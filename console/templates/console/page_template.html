@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BETL Console</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'console/css/externalCSS/normalize.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'console/css/externalCSS/foundation.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'console/css/app.css' %}">
+
+    <!-- <script src="{% static 'js/externalJS/modernizr.js' %}"></script> -->
+
+</head>
+
+<body>
+
+  <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  </div>
+
+  <div class="top-bar" id="responsive-menu">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="{% url 'console:jobLog' %}">Job Log</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-container fluid">
+    <div class="grid-x grid-margin-x grid-padding-x">
+      <div class="cell"><h1>{% block title %} !! TITLE BLOCK MISSING !! {% endblock %}</h1></div>
+    </div>
+    <div class="grid-x grid-margin-x grid-padding-x">
+      <div class="cell">{% block content %} !! CONTENT BLOCK MISSING !! {% endblock %}</div>
+    </div>
+  </div>
+
+  <script src="{% static 'console/js/externalJS/jquery.js' %}"></script>
+  <script src="{% static 'console/js/externalJS/foundation.min.js' %}"></script>
+
+  <!-- <script src="{% static 'console/js/app.js' %}"></script> -->
+
+  <!-- initialise Foundation JS -->
+  <script>$(document).foundation();</script>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{% extends "console/page_template.html" %}
+{% load static %}
+
+{% block title %}Job Schedule ({{jobLog.job_id}}){% endblock %}
+
+{% block content %}
+
+<div class="grid-container full">
+  <div class="grid-x grid-margin-x grid-padding-x">
+    <div class="cell">
+      {% if jobSchedule %}
+        <table>
+          <tr>
+            <th>Sequence</th>
+            <th>Function Name</th>
+            <th>Stage</th>
+            <th>Status</th>
+            <th>Started</th>
+            <th>Ended</th>
+            <th>Log</th>
+          </tr>
+          {% for dataflow in jobSchedule %}
+            <tr>
+              <td>{{dataflow.sequence}}</td>
+              <td>{{dataflow.function_name}}</td>
+              <td>{{dataflow.stage}}</td>
+              <td>{{dataflow.status}}</td>
+              <td>{{dataflow.start_datetime}}</td>
+              <td>{{dataflow.end_datetime}}</td>
+              <td>{{dataflow.log|slice:"0:100"}}...<br /><span class="expandLink">expand</span></td>
+            </tr>
+            {% endfor %}
+          </table>
+      {% else %}
+        <p>The job schedule is empty for jobId {{jobLog.job_id}}.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

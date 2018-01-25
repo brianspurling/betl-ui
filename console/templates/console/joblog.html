@@ -1,0 +1,46 @@
+{% extends "console/page_template.html" %}
+{% load static %}
+
+{% block title %}Job Log{% endblock %}
+
+{% block content %}
+
+<div class="grid-container full">
+  <div class="grid-x grid-margin-x grid-padding-x">
+    <div class="cell">
+      {% if jobList %}
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Started</th>
+            <th>Ended</th>
+            <th>Status</th>
+            <th>Status Message</th>
+            <th>Bulk or Delta</th>
+            <th>Log</th>
+            <th></th>
+          </tr>
+          {% for job in jobList %}
+            <tr>
+              <td>{{job.job_id}}</td>
+              <td>{{job.start_datetime}}</td>
+              <td>{{job.end_datetime}}</td>
+              <td>{{job.status}}</td>
+              <td>{{job.status_message}}</td>
+              <td>{{job.bulk_or_delta}}</td>
+              <td>{{job.log_file}}</td>
+              <td>
+                <a href="{% url 'console:jobSchedule' job.job_id %}" class="button">Schedule</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+      {% else %}
+        <p>The job log is empty.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
